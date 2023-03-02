@@ -1,0 +1,30 @@
+{
+  "name": "namaste_react",
+  "version": "1.0.0",
+  "description": "this is live course demo",
+  "scripts": {
+    "start": "parcel Session3/index.html",
+    "build": "parcel build Session3/index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swapnil28sahu/namaste_react.git"
+  },
+  "author": "Swapnil Sahu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/swapnil28sahu/namaste_react/issues"
+  },
+  "homepage": "https://github.com/swapnil28sahu/namaste_react#readme",
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "parcel": "^2.8.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
