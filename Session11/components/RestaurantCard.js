@@ -1,11 +1,13 @@
 import { Img_CDN } from "../Constants";
+import { useContext } from "react";
+import userContext from "./Utils/userContext.js";
 const RestaurantCard = ({
   name,
   cuisines,
   cloudinaryImageId,
   lastMileTravelString,
-  user,
 }) => {
+  const { user } = useContext(userContext);
   // const { name, cuisines, cloudinaryImageId, lastMileTravelString } =
   //   restaurant.data;
   return (
@@ -13,8 +15,10 @@ const RestaurantCard = ({
       <img src={Img_CDN + cloudinaryImageId} />
       <h2 className="font-bold text-xl">{name}</h2>
       <h3>{cuisines.join(" ")}</h3>
-      <h4>{lastMileTravelString} minutes</h4>
-      <h4>{user.name}</h4>
+      <h4>{lastMileTravelString} </h4>
+      <h4 className="font-bold">
+        {user.name}-{user.email}
+      </h4>
     </div>
   );
 };

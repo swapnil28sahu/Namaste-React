@@ -12,6 +12,7 @@ import RestaurantMenu from "./components/RestaurantMenu.js";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Profile from "./components/Profile.js";
 import Shimmer from "./components/Shimmer.js";
+import userContext from "./components/Utils/userContext.js";
 //import Instamart from "./components/Instamart.js";
 // import { title } from "./components/Header.js";Named import
 // import * will import all named import  it will be written as import * as obj then use obj.title to access  ,import Header is default one so no need of bracket
@@ -78,12 +79,22 @@ import Shimmer from "./components/Shimmer.js";
 const Instamart = lazy(() => import("./components/Instamart.js"));
 const About = lazy(() => import("./components/About.js"));
 const AppLayout = () => {
-  const [user, setuser] = useState();
+  const [user, setuser] = useState({
+    name: "Swapnil Sahu",
+    email: "swapnil28.sahu@gmail.com",
+  });
   return (
     <>
-      <Header />
-      <Outlet />
-      <Footer />
+      <userContext.Provider
+        value={{
+          user: user,
+          setuser: setuser,
+        }}
+      >
+        <Header />
+        <Outlet />
+        <Footer />
+      </userContext.Provider>
     </>
   );
 };

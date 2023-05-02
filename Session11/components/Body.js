@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { restlist } from "../Constants.js";
 import RestaurantCard from "./RestaurantCard.js";
 import { useState } from "react";
@@ -7,8 +7,10 @@ import Shimmer from "./Shimmer.js";
 import { filterdata } from "./Utils/Helper.js";
 // import { render } from "react-dom";
 import useOnline from "./Utils/useOnline.js";
+import { useContext } from "react";
+import userContext from "./Utils/userContext.js";
 
-const Body = ({ user }) => {
+const Body = () => {
   // let searchtext = "Burger King"; //this wont work so we have to create react kind of variable
   //searchtext is local state variable
   // const [SearchInput, SetSearchInput] = useState("Burger King"); //burger king is default value, usestate return variable, function to use variable use set with var name as convention
@@ -16,6 +18,7 @@ const Body = ({ user }) => {
   // const [restaurants, SetRestaurants] = useState(restlist);
   const [Filteredrestaurants, SetFilteredRestaurants] = useState([]);
   const [Allrestaurants, SetAllRestaurants] = useState([]);
+  const { user, setuser } = useContext(userContext);
 
   useEffect(() => {
     getRestaurants();
@@ -61,15 +64,19 @@ const Body = ({ user }) => {
             data = filterdata(SearchInput, Allrestaurants);
             //after getting data we have to update restaurant
             SetFilteredRestaurants(data);
-            // if (SearchClicked == "true") {
-            //   SetSearchClicked("false");
-            // } else {
-            //   SetSearchClicked("true");
-            // }
           }}
         >
           Search
         </button>
+        <input
+          value={user.name}
+          onChange={(e) =>
+            setuser({
+              name: e.target.value,
+              email: "newemail@gmail.com",
+            })
+          }
+        ></input>
       </div>
       <div className="flex flex-wrap">
         {Filteredrestaurants.map((restaurant) => {
